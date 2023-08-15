@@ -4,22 +4,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "Solver",
+    name: "Problems",
+    platforms: [.iOS(.v15),.macOS(.v13)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "Solver",
-            targets: ["Solver"]),
-        .library(name: "Problems", targets: ["Problems"])
+        .library(name: "Problems", targets: ["Problems"]),
+        .library(name: "ProblemsUI", targets: ["ProblemsUI"]),
+        .library(name: "ProblemsAssertions", targets: ["ProblemsAssertions"])
     ],
     targets: [
         .target(
-            name: "Solver"),
-        .testTarget(
-            name: "SolverTests",
-            dependencies: ["Solver"]),
-        .target(
             name: "Problems"),
-        .testTarget(name: "ProblemsTests", dependencies: ["Problems"])
+        .testTarget(
+            name: "ProblemsTests",
+            dependencies: ["Problems"]),
+        .target(name: "ProblemsUI", dependencies: ["Problems"]),
+        .target(name: "ProblemsAssertions", dependencies: ["Problems"])
     ]
 )
